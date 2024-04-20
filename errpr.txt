@@ -1,0 +1,735 @@
+src/main.v:48:25: error: function `x.vweb.run` parameter `global_app` is `mut`, so use `mut app` instead
+   46 |     app.mount_static_folder_at(os.resource_abs_path('.'), '/')!
+   47 | 
+   48 |     vweb.run[App, Context](app, port)
+      |                            ~~~
+   49 | }
+   50 |
+src/product_controller.v:9:15: error: type `App` has no field named `req`.
+2 possibilities: `StaticHandler`, `secret_key`.
+    7 | @['/controller/products'; get]
+    8 | pub fn (mut app App) controller_get_all_products() vweb.Result {
+    9 |     token := app.req.header.get_custom('token') or { '' }
+      |                  ~~~
+   10 | 
+   11 |     if !auth_verify(token) {
+src/product_controller.v:9:19: error: `app.req` does not return a value
+    7 | @['/controller/products'; get]
+    8 | pub fn (mut app App) controller_get_all_products() vweb.Result {
+    9 |     token := app.req.header.get_custom('token') or { '' }
+      |                      ~~~~~~
+   10 | 
+   11 |     if !auth_verify(token) {
+src/product_controller.v:9:26: error: cannot call a method using an invalid expression
+    7 | @['/controller/products'; get]
+    8 | pub fn (mut app App) controller_get_all_products() vweb.Result {
+    9 |     token := app.req.header.get_custom('token') or { '' }
+      |                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   10 | 
+   11 |     if !auth_verify(token) {
+src/product_controller.v:9:46: error: unexpected `or` block, the function `get_custom` does not return an Option or a Result
+    7 | @['/controller/products'; get]
+    8 | pub fn (mut app App) controller_get_all_products() vweb.Result {
+    9 |     token := app.req.header.get_custom('token') or { '' }
+      |                                                 ~~~~~~~~~
+   10 | 
+   11 |     if !auth_verify(token) {
+src/product_controller.v:9:8: error: assignment mismatch: 1 variable(s) but `get_custom()` returns 0 value(s)
+    7 | @['/controller/products'; get]
+    8 | pub fn (mut app App) controller_get_all_products() vweb.Result {
+    9 |     token := app.req.header.get_custom('token') or { '' }
+      |           ~~
+   10 | 
+   11 |     if !auth_verify(token) {
+src/product_controller.v:11:18: error: `token` (no value) used as value in argument 1 to `auth_verify`
+    9 |     token := app.req.header.get_custom('token') or { '' }
+   10 | 
+   11 |     if !auth_verify(token) {
+      |                     ~~~~~
+   12 |         app.set_status(401, '')
+   13 |         return app.text('Not valid token')
+src/product_controller.v:12:7: error: unknown method or field: `App.set_status`.
+16 possibilities: `before_request`, `controller_auth`, `controller_create_product`, `controller_create_user`, `controller_get_all_products`, `controller_get_all_user`, `controller_get_user`, `index`, `products`, `service_add_product`, `service_add_user`, `service_auth`, `service_get_all_products`, `service_get_all_user`, `service_get_user`, `testboom`.
+   10 | 
+   11 |     if !auth_verify(token) {
+   12 |         app.set_status(401, '')
+      |             ~~~~~~~~~~~~~~~~~~~
+   13 |         return app.text('Not valid token')
+   14 |     }
+src/product_controller.v:13:14: error: unknown method or field: `App.text`.
+16 possibilities: `before_request`, `controller_auth`, `controller_create_product`, `controller_create_user`, `controller_get_all_products`, `controller_get_all_user`, `controller_get_user`, `index`, `products`, `service_add_product`, `service_add_user`, `service_auth`, `service_get_all_products`, `service_get_all_user`, `service_get_user`, `testboom`.
+   11 |     if !auth_verify(token) {
+   12 |         app.set_status(401, '')
+   13 |         return app.text('Not valid token')
+      |                    ~~~~~~~~~~~~~~~~~~~~~~~
+   14 |     }
+   15 |
+src/product_controller.v:13:3: error: `app.text('Not valid token')` used as value
+   11 |     if !auth_verify(token) {
+   12 |         app.set_status(401, '')
+   13 |         return app.text('Not valid token')
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   14 |     }
+   15 |
+src/product_controller.v:26:7: error: unknown method or field: `App.set_status`.
+16 possibilities: `before_request`, `controller_auth`, `controller_create_product`, `controller_create_user`, `controller_get_all_products`, `controller_get_all_user`, `controller_get_user`, `index`, `products`, `service_add_product`, `service_add_user`, `service_auth`, `service_get_all_products`, `service_get_all_user`, `service_get_user`, `testboom`.
+   24 | 
+   25 |     response := app.service_get_all_products() or {
+   26 |         app.set_status(400, '')
+      |             ~~~~~~~~~~~~~~~~~~~
+   27 |         return app.text('${err}')
+   28 |     }
+src/product_controller.v:27:14: error: unknown method or field: `App.text`.
+16 possibilities: `before_request`, `controller_auth`, `controller_create_product`, `controller_create_user`, `controller_get_all_products`, `controller_get_all_user`, `controller_get_user`, `index`, `products`, `service_add_product`, `service_add_user`, `service_auth`, `service_get_all_products`, `service_get_all_user`, `service_get_user`, `testboom`.
+   25 |     response := app.service_get_all_products() or {
+   26 |         app.set_status(400, '')
+   27 |         return app.text('${err}')
+      |                    ~~~~~~~~~~~~~~
+   28 |     }
+   29 |     return app.json(response)
+src/product_controller.v:27:3: error: `app.text('$err')` used as value
+   25 |     response := app.service_get_all_products() or {
+   26 |         app.set_status(400, '')
+   27 |         return app.text('${err}')
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~
+   28 |     }
+   29 |     return app.json(response)
+src/product_controller.v:29:13: error: unknown method or field: `App.json`.
+16 possibilities: `before_request`, `controller_auth`, `controller_create_product`, `controller_create_user`, `controller_get_all_products`, `controller_get_all_user`, `controller_get_user`, `index`, `products`, `service_add_product`, `service_add_user`, `service_auth`, `service_get_all_products`, `service_get_all_user`, `service_get_user`, `testboom`.
+   27 |         return app.text('${err}')
+   28 |     }
+   29 |     return app.json(response)
+      |                ~~~~~~~~~~~~~~
+   30 |     // return app.text('response')
+   31 | }
+src/product_controller.v:29:2: error: `app.json(response)` used as value
+   27 |         return app.text('${err}')
+   28 |     }
+   29 |     return app.json(response)
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~
+   30 |     // return app.text('response')
+   31 | }
+src/product_controller.v:36:7: error: unknown method or field: `App.set_status`.
+16 possibilities: `before_request`, `controller_auth`, `controller_create_product`, `controller_create_user`, `controller_get_all_products`, `controller_get_all_user`, `controller_get_user`, `index`, `products`, `service_add_product`, `service_add_user`, `service_auth`, `service_get_all_products`, `service_get_all_user`, `service_get_user`, `testboom`.
+   34 | pub fn (mut app App) controller_create_product(product_name string) vweb.Result {
+   35 |     if product_name == '' {
+   36 |         app.set_status(400, '')
+      |             ~~~~~~~~~~~~~~~~~~~
+   37 |         return app.text('product name cannot be empty')
+   38 |     }
+src/product_controller.v:37:14: error: unknown method or field: `App.text`.
+16 possibilities: `before_request`, `controller_auth`, `controller_create_product`, `controller_create_user`, `controller_get_all_products`, `controller_get_all_user`, `controller_get_user`, `index`, `products`, `service_add_product`, `service_add_user`, `service_auth`, `service_get_all_products`, `service_get_all_user`, `service_get_user`, `testboom`.
+   35 |     if product_name == '' {
+   36 |         app.set_status(400, '')
+   37 |         return app.text('product name cannot be empty')
+      |                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   38 |     }
+   39 |
+src/product_controller.v:37:3: error: `app.text('product name cannot be empty')` used as value
+   35 |     if product_name == '' {
+   36 |         app.set_status(400, '')
+   37 |         return app.text('product name cannot be empty')
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   38 |     }
+   39 |
+src/product_controller.v:40:15: error: type `App` has no field named `req`.
+2 possibilities: `StaticHandler`, `secret_key`.
+   38 |     }
+   39 | 
+   40 |     token := app.req.header.get_custom('token') or { '' }
+      |                  ~~~
+   41 | 
+   42 |     if !auth_verify(token) {
+src/product_controller.v:40:19: error: `app.req` does not return a value
+   38 |     }
+   39 | 
+   40 |     token := app.req.header.get_custom('token') or { '' }
+      |                      ~~~~~~
+   41 | 
+   42 |     if !auth_verify(token) {
+src/product_controller.v:40:26: error: cannot call a method using an invalid expression
+   38 |     }
+   39 | 
+   40 |     token := app.req.header.get_custom('token') or { '' }
+      |                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   41 | 
+   42 |     if !auth_verify(token) {
+src/product_controller.v:40:46: error: unexpected `or` block, the function `get_custom` does not return an Option or a Result
+   38 |     }
+   39 | 
+   40 |     token := app.req.header.get_custom('token') or { '' }
+      |                                                 ~~~~~~~~~
+   41 | 
+   42 |     if !auth_verify(token) {
+src/product_controller.v:40:8: error: assignment mismatch: 1 variable(s) but `get_custom()` returns 0 value(s)
+   38 |     }
+   39 | 
+   40 |     token := app.req.header.get_custom('token') or { '' }
+      |           ~~
+   41 | 
+   42 |     if !auth_verify(token) {
+src/product_controller.v:42:18: error: `token` (no value) used as value in argument 1 to `auth_verify`
+   40 |     token := app.req.header.get_custom('token') or { '' }
+   41 | 
+   42 |     if !auth_verify(token) {
+      |                     ~~~~~
+   43 |         app.set_status(401, '')
+   44 |         return app.text('Not valid token')
+src/product_controller.v:43:7: error: unknown method or field: `App.set_status`.
+16 possibilities: `before_request`, `controller_auth`, `controller_create_product`, `controller_create_user`, `controller_get_all_products`, `controller_get_all_user`, `controller_get_user`, `index`, `products`, `service_add_product`, `service_add_user`, `service_auth`, `service_get_all_products`, `service_get_all_user`, `service_get_user`, `testboom`.
+   41 | 
+   42 |     if !auth_verify(token) {
+   43 |         app.set_status(401, '')
+      |             ~~~~~~~~~~~~~~~~~~~
+   44 |         return app.text('Not valid token')
+   45 |     }
+src/product_controller.v:44:14: error: unknown method or field: `App.text`.
+16 possibilities: `before_request`, `controller_auth`, `controller_create_product`, `controller_create_user`, `controller_get_all_products`, `controller_get_all_user`, `controller_get_user`, `index`, `products`, `service_add_product`, `service_add_user`, `service_auth`, `service_get_all_products`, `service_get_all_user`, `service_get_user`, `testboom`.
+   42 |     if !auth_verify(token) {
+   43 |         app.set_status(401, '')
+   44 |         return app.text('Not valid token')
+      |                    ~~~~~~~~~~~~~~~~~~~~~~~
+   45 |     }
+   46 |
+src/product_controller.v:44:3: error: `app.text('Not valid token')` used as value
+   42 |     if !auth_verify(token) {
+   43 |         app.set_status(401, '')
+   44 |         return app.text('Not valid token')
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   45 |     }
+   46 |
+src/product_controller.v:47:55: error: cannot call a method using an invalid expression
+   45 |     }
+   46 | 
+   47 |     jwt_payload_stringify := base64.url_decode_str(token.split('.')[1])
+      |                                                          ~~~~~~~~~~
+   48 | 
+   49 |     jwt_payload := json.decode(JwtPayload, jwt_payload_stringify) or {
+src/product_controller.v:47:65: error: type `void` does not support indexing
+   45 |     }
+   46 | 
+   47 |     jwt_payload_stringify := base64.url_decode_str(token.split('.')[1])
+      |                                                                    ~~~
+   48 | 
+   49 |     jwt_payload := json.decode(JwtPayload, jwt_payload_stringify) or {
+src/product_controller.v:47:49: error: `token.split('.')[1]` (no value) used as value in argument 1 to `encoding.base64.url_decode_str`
+   45 |     }
+   46 | 
+   47 |     jwt_payload_stringify := base64.url_decode_str(token.split('.')[1])
+      |                                                    ~~~~~~~~~~~~~~~~~~~
+   48 | 
+   49 |     jwt_payload := json.decode(JwtPayload, jwt_payload_stringify) or {
+src/product_controller.v:50:7: error: unknown method or field: `App.set_status`.
+16 possibilities: `before_request`, `controller_auth`, `controller_create_product`, `controller_create_user`, `controller_get_all_products`, `controller_get_all_user`, `controller_get_user`, `index`, `products`, `service_add_product`, `service_add_user`, `service_auth`, `service_get_all_products`, `service_get_all_user`, `service_get_user`, `testboom`.
+   48 | 
+   49 |     jwt_payload := json.decode(JwtPayload, jwt_payload_stringify) or {
+   50 |         app.set_status(501, '')
+      |             ~~~~~~~~~~~~~~~~~~~
+   51 |         return app.text('jwt decode error')
+   52 |     }
+src/product_controller.v:51:14: error: unknown method or field: `App.text`.
+16 possibilities: `before_request`, `controller_auth`, `controller_create_product`, `controller_create_user`, `controller_get_all_products`, `controller_get_all_user`, `controller_get_user`, `index`, `products`, `service_add_product`, `service_add_user`, `service_auth`, `service_get_all_products`, `service_get_all_user`, `service_get_user`, `testboom`.
+   49 |     jwt_payload := json.decode(JwtPayload, jwt_payload_stringify) or {
+   50 |         app.set_status(501, '')
+   51 |         return app.text('jwt decode error')
+      |                    ~~~~~~~~~~~~~~~~~~~~~~~~
+   52 |     }
+   53 |
+src/product_controller.v:51:3: error: `app.text('jwt decode error')` used as value
+   49 |     jwt_payload := json.decode(JwtPayload, jwt_payload_stringify) or {
+   50 |         app.set_status(501, '')
+   51 |         return app.text('jwt decode error')
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   52 |     }
+   53 |
+src/product_controller.v:57:7: error: unknown method or field: `App.set_status`.
+16 possibilities: `before_request`, `controller_auth`, `controller_create_product`, `controller_create_user`, `controller_get_all_products`, `controller_get_all_user`, `controller_get_user`, `index`, `products`, `service_add_product`, `service_add_user`, `service_auth`, `service_get_all_products`, `service_get_all_user`, `service_get_user`, `testboom`.
+   55 | 
+   56 |     app.service_add_product(product_name, user_id.int()) or {
+   57 |         app.set_status(400, '')
+      |             ~~~~~~~~~~~~~~~~~~~
+   58 |         return app.text('error: ${err}')
+   59 |     }
+src/product_controller.v:58:14: error: unknown method or field: `App.text`.
+16 possibilities: `before_request`, `controller_auth`, `controller_create_product`, `controller_create_user`, `controller_get_all_products`, `controller_get_all_user`, `controller_get_user`, `index`, `products`, `service_add_product`, `service_add_user`, `service_auth`, `service_get_all_products`, `service_get_all_user`, `service_get_user`, `testboom`.
+   56 |     app.service_add_product(product_name, user_id.int()) or {
+   57 |         app.set_status(400, '')
+   58 |         return app.text('error: ${err}')
+      |                    ~~~~~~~~~~~~~~~~~~~~~
+   59 |     }
+   60 |     app.set_status(201, '')
+src/product_controller.v:58:3: error: `app.text('error: $err')` used as value
+   56 |     app.service_add_product(product_name, user_id.int()) or {
+   57 |         app.set_status(400, '')
+   58 |         return app.text('error: ${err}')
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   59 |     }
+   60 |     app.set_status(201, '')
+src/product_controller.v:60:6: error: unknown method or field: `App.set_status`.
+16 possibilities: `before_request`, `controller_auth`, `controller_create_product`, `controller_create_user`, `controller_get_all_products`, `controller_get_all_user`, `controller_get_user`, `index`, `products`, `service_add_product`, `service_add_user`, `service_auth`, `service_get_all_products`, `service_get_all_user`, `service_get_user`, `testboom`.
+   58 |         return app.text('error: ${err}')
+   59 |     }
+   60 |     app.set_status(201, '')
+      |         ~~~~~~~~~~~~~~~~~~~
+   61 |     return app.text('product created successfully')
+   62 | }
+src/product_controller.v:61:13: error: unknown method or field: `App.text`.
+16 possibilities: `before_request`, `controller_auth`, `controller_create_product`, `controller_create_user`, `controller_get_all_products`, `controller_get_all_user`, `controller_get_user`, `index`, `products`, `service_add_product`, `service_add_user`, `service_auth`, `service_get_all_products`, `service_get_all_user`, `service_get_user`, `testboom`.
+   59 |     }
+   60 |     app.set_status(201, '')
+   61 |     return app.text('product created successfully')
+      |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   62 | }
+src/product_controller.v:61:2: error: `app.text('product created successfully')` used as value
+   59 |     }
+   60 |     app.set_status(201, '')
+   61 |     return app.text('product created successfully')
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   62 | }
+src/product_view.v:7:15: error: unknown method or field: `App.get_cookie`.
+16 possibilities: `before_request`, `controller_auth`, `controller_create_product`, `controller_create_user`, `controller_get_all_products`, `controller_get_all_user`, `controller_get_user`, `index`, `products`, `service_add_product`, `service_add_user`, `service_auth`, `service_get_all_products`, `service_get_all_user`, `service_get_user`, `testboom`.
+    5 | @['/products'; get]
+    6 | pub fn (mut app App) products() vweb.Result {
+    7 |     token := app.get_cookie('token') or {
+      |                  ~~~~~~~~~~~~~~~~~~~~~~~~
+    8 |         app.set_status(400, '')
+    9 |         return app.text('${err}')
+src/product_view.v:8:7: error: unknown method or field: `App.set_status`.
+16 possibilities: `before_request`, `controller_auth`, `controller_create_product`, `controller_create_user`, `controller_get_all_products`, `controller_get_all_user`, `controller_get_user`, `index`, `products`, `service_add_product`, `service_add_user`, `service_auth`, `service_get_all_products`, `service_get_all_user`, `service_get_user`, `testboom`.
+    6 | pub fn (mut app App) products() vweb.Result {
+    7 |     token := app.get_cookie('token') or {
+    8 |         app.set_status(400, '')
+      |             ~~~~~~~~~~~~~~~~~~~
+    9 |         return app.text('${err}')
+   10 |     }
+src/product_view.v:9:14: error: unknown method or field: `App.text`.
+16 possibilities: `before_request`, `controller_auth`, `controller_create_product`, `controller_create_user`, `controller_get_all_products`, `controller_get_all_user`, `controller_get_user`, `index`, `products`, `service_add_product`, `service_add_user`, `service_auth`, `service_get_all_products`, `service_get_all_user`, `service_get_user`, `testboom`.
+    7 |     token := app.get_cookie('token') or {
+    8 |         app.set_status(400, '')
+    9 |         return app.text('${err}')
+      |                    ~~~~~~~~~~~~~~
+   10 |     }
+   11 |
+src/product_view.v:9:3: error: `app.text('$err')` used as value
+    7 |     token := app.get_cookie('token') or {
+    8 |         app.set_status(400, '')
+    9 |         return app.text('${err}')
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~
+   10 |     }
+   11 |
+src/product_view.v:7:35: error: unexpected `or` block, the function `get_cookie` does not return an Option or a Result
+    5 | @['/products'; get]
+    6 | pub fn (mut app App) products() vweb.Result {
+    7 |     token := app.get_cookie('token') or {
+      |                                      ~~~~
+    8 |         app.set_status(400, '')
+    9 |         return app.text('${err}')
+src/product_view.v:7:8: error: assignment mismatch: 1 variable(s) but `get_cookie()` returns 0 value(s)
+    5 | @['/products'; get]
+    6 | pub fn (mut app App) products() vweb.Result {
+    7 |     token := app.get_cookie('token') or {
+      |           ~~
+    8 |         app.set_status(400, '')
+    9 |         return app.text('${err}')
+src/product_view.v:12:27: error: `token` (no value) used as value in argument 1 to `get_products`
+   10 |     }
+   11 | 
+   12 |     products := get_products(token) or {
+      |                              ~~~~~
+   13 |         app.set_status(400, '')
+   14 |         return app.text('Failed to fetch data from the server. Error: ${err}')
+src/product_view.v:13:7: error: unknown method or field: `App.set_status`.
+16 possibilities: `before_request`, `controller_auth`, `controller_create_product`, `controller_create_user`, `controller_get_all_products`, `controller_get_all_user`, `controller_get_user`, `index`, `products`, `service_add_product`, `service_add_user`, `service_auth`, `service_get_all_products`, `service_get_all_user`, `service_get_user`, `testboom`.
+   11 | 
+   12 |     products := get_products(token) or {
+   13 |         app.set_status(400, '')
+      |             ~~~~~~~~~~~~~~~~~~~
+   14 |         return app.text('Failed to fetch data from the server. Error: ${err}')
+   15 |     }
+src/product_view.v:14:14: error: unknown method or field: `App.text`.
+16 possibilities: `before_request`, `controller_auth`, `controller_create_product`, `controller_create_user`, `controller_get_all_products`, `controller_get_all_user`, `controller_get_user`, `index`, `products`, `service_add_product`, `service_add_user`, `service_auth`, `service_get_all_products`, `service_get_all_user`, `service_get_user`, `testboom`.
+   12 |     products := get_products(token) or {
+   13 |         app.set_status(400, '')
+   14 |         return app.text('Failed to fetch data from the server. Error: ${err}')
+      |                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   15 |     }
+   16 |
+src/product_view.v:14:3: error: `app.text('Failed to fetch data from the server. Error: $err')` used as value
+   12 |     products := get_products(token) or {
+   13 |         app.set_status(400, '')
+   14 |         return app.text('Failed to fetch data from the server. Error: ${err}')
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   15 |     }
+   16 |
+src/product_view.v:17:19: error: `token` (no value) used as value in argument 1 to `get_user`
+   15 |     }
+   16 | 
+   17 |     user := get_user(token) or {
+      |                      ~~~~~
+   18 |         app.set_status(400, '')
+   19 |         return app.text('Failed to fetch data from the server. Error: ${err}')
+src/product_view.v:18:7: error: unknown method or field: `App.set_status`.
+16 possibilities: `before_request`, `controller_auth`, `controller_create_product`, `controller_create_user`, `controller_get_all_products`, `controller_get_all_user`, `controller_get_user`, `index`, `products`, `service_add_product`, `service_add_user`, `service_auth`, `service_get_all_products`, `service_get_all_user`, `service_get_user`, `testboom`.
+   16 | 
+   17 |     user := get_user(token) or {
+   18 |         app.set_status(400, '')
+      |             ~~~~~~~~~~~~~~~~~~~
+   19 |         return app.text('Failed to fetch data from the server. Error: ${err}')
+   20 |     }
+src/product_view.v:19:14: error: unknown method or field: `App.text`.
+16 possibilities: `before_request`, `controller_auth`, `controller_create_product`, `controller_create_user`, `controller_get_all_products`, `controller_get_all_user`, `controller_get_user`, `index`, `products`, `service_add_product`, `service_add_user`, `service_auth`, `service_get_all_products`, `service_get_all_user`, `service_get_user`, `testboom`.
+   17 |     user := get_user(token) or {
+   18 |         app.set_status(400, '')
+   19 |         return app.text('Failed to fetch data from the server. Error: ${err}')
+      |                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   20 |     }
+   21 |
+src/product_view.v:19:3: error: `app.text('Failed to fetch data from the server. Error: $err')` used as value
+   17 |     user := get_user(token) or {
+   18 |         app.set_status(400, '')
+   19 |         return app.text('Failed to fetch data from the server. Error: ${err}')
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   20 |     }
+   21 |
+src/user_controllers.v:10:15: error: type `App` has no field named `req`.
+2 possibilities: `StaticHandler`, `secret_key`.
+    8 | pub fn (mut app App) controller_get_all_user() vweb.Result {
+    9 |     // token := app.get_cookie('token') or { '' }
+   10 |     token := app.req.header.get_custom('token') or { '' }
+      |                  ~~~
+   11 | 
+   12 |     if !auth_verify(token) {
+src/user_controllers.v:10:19: error: `app.req` does not return a value
+    8 | pub fn (mut app App) controller_get_all_user() vweb.Result {
+    9 |     // token := app.get_cookie('token') or { '' }
+   10 |     token := app.req.header.get_custom('token') or { '' }
+      |                      ~~~~~~
+   11 | 
+   12 |     if !auth_verify(token) {
+src/user_controllers.v:10:26: error: cannot call a method using an invalid expression
+    8 | pub fn (mut app App) controller_get_all_user() vweb.Result {
+    9 |     // token := app.get_cookie('token') or { '' }
+   10 |     token := app.req.header.get_custom('token') or { '' }
+      |                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   11 | 
+   12 |     if !auth_verify(token) {
+src/user_controllers.v:10:46: error: unexpected `or` block, the function `get_custom` does not return an Option or a Result
+    8 | pub fn (mut app App) controller_get_all_user() vweb.Result {
+    9 |     // token := app.get_cookie('token') or { '' }
+   10 |     token := app.req.header.get_custom('token') or { '' }
+      |                                                 ~~~~~~~~~
+   11 | 
+   12 |     if !auth_verify(token) {
+src/user_controllers.v:10:8: error: assignment mismatch: 1 variable(s) but `get_custom()` returns 0 value(s)
+    8 | pub fn (mut app App) controller_get_all_user() vweb.Result {
+    9 |     // token := app.get_cookie('token') or { '' }
+   10 |     token := app.req.header.get_custom('token') or { '' }
+      |           ~~
+   11 | 
+   12 |     if !auth_verify(token) {
+src/user_controllers.v:12:18: error: `token` (no value) used as value in argument 1 to `auth_verify`
+   10 |     token := app.req.header.get_custom('token') or { '' }
+   11 | 
+   12 |     if !auth_verify(token) {
+      |                     ~~~~~
+   13 |         app.set_status(401, '')
+   14 |         return app.text('Not valid token')
+src/user_controllers.v:13:7: error: unknown method or field: `App.set_status`.
+16 possibilities: `before_request`, `controller_auth`, `controller_create_product`, `controller_create_user`, `controller_get_all_products`, `controller_get_all_user`, `controller_get_user`, `index`, `products`, `service_add_product`, `service_add_user`, `service_auth`, `service_get_all_products`, `service_get_all_user`, `service_get_user`, `testboom`.
+   11 | 
+   12 |     if !auth_verify(token) {
+   13 |         app.set_status(401, '')
+      |             ~~~~~~~~~~~~~~~~~~~
+   14 |         return app.text('Not valid token')
+   15 |     }
+src/user_controllers.v:14:14: error: unknown method or field: `App.text`.
+16 possibilities: `before_request`, `controller_auth`, `controller_create_product`, `controller_create_user`, `controller_get_all_products`, `controller_get_all_user`, `controller_get_user`, `index`, `products`, `service_add_product`, `service_add_user`, `service_auth`, `service_get_all_products`, `service_get_all_user`, `service_get_user`, `testboom`.
+   12 |     if !auth_verify(token) {
+   13 |         app.set_status(401, '')
+   14 |         return app.text('Not valid token')
+      |                    ~~~~~~~~~~~~~~~~~~~~~~~
+   15 |     }
+   16 |
+src/user_controllers.v:14:3: error: `app.text('Not valid token')` used as value
+   12 |     if !auth_verify(token) {
+   13 |         app.set_status(401, '')
+   14 |         return app.text('Not valid token')
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   15 |     }
+   16 |
+src/user_controllers.v:18:7: error: unknown method or field: `App.set_status`.
+16 possibilities: `before_request`, `controller_auth`, `controller_create_product`, `controller_create_user`, `controller_get_all_products`, `controller_get_all_user`, `controller_get_user`, `index`, `products`, `service_add_product`, `service_add_user`, `service_auth`, `service_get_all_products`, `service_get_all_user`, `service_get_user`, `testboom`.
+   16 | 
+   17 |     response := app.service_get_all_user() or {
+   18 |         app.set_status(400, '')
+      |             ~~~~~~~~~~~~~~~~~~~
+   19 |         return app.text('${err}')
+   20 |     }
+src/user_controllers.v:19:14: error: unknown method or field: `App.text`.
+16 possibilities: `before_request`, `controller_auth`, `controller_create_product`, `controller_create_user`, `controller_get_all_products`, `controller_get_all_user`, `controller_get_user`, `index`, `products`, `service_add_product`, `service_add_user`, `service_auth`, `service_get_all_products`, `service_get_all_user`, `service_get_user`, `testboom`.
+   17 |     response := app.service_get_all_user() or {
+   18 |         app.set_status(400, '')
+   19 |         return app.text('${err}')
+      |                    ~~~~~~~~~~~~~~
+   20 |     }
+   21 |     return app.json(response)
+src/user_controllers.v:19:3: error: `app.text('$err')` used as value
+   17 |     response := app.service_get_all_user() or {
+   18 |         app.set_status(400, '')
+   19 |         return app.text('${err}')
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~
+   20 |     }
+   21 |     return app.json(response)
+src/user_controllers.v:21:13: error: unknown method or field: `App.json`.
+16 possibilities: `before_request`, `controller_auth`, `controller_create_product`, `controller_create_user`, `controller_get_all_products`, `controller_get_all_user`, `controller_get_user`, `index`, `products`, `service_add_product`, `service_add_user`, `service_auth`, `service_get_all_products`, `service_get_all_user`, `service_get_user`, `testboom`.
+   19 |         return app.text('${err}')
+   20 |     }
+   21 |     return app.json(response)
+      |                ~~~~~~~~~~~~~~
+   22 | }
+   23 |
+src/user_controllers.v:21:2: error: `app.json(response)` used as value
+   19 |         return app.text('${err}')
+   20 |     }
+   21 |     return app.json(response)
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~
+   22 | }
+   23 |
+src/user_controllers.v:27:15: error: type `App` has no field named `req`.
+2 possibilities: `StaticHandler`, `secret_key`.
+   25 | pub fn (mut app App) controller_get_user() vweb.Result {
+   26 |     // token := app.get_cookie('token') or { '' }
+   27 |     token := app.req.header.get_custom('token') or { '' }
+      |                  ~~~
+   28 | 
+   29 |     if !auth_verify(token) {
+src/user_controllers.v:27:19: error: `app.req` does not return a value
+   25 | pub fn (mut app App) controller_get_user() vweb.Result {
+   26 |     // token := app.get_cookie('token') or { '' }
+   27 |     token := app.req.header.get_custom('token') or { '' }
+      |                      ~~~~~~
+   28 | 
+   29 |     if !auth_verify(token) {
+src/user_controllers.v:27:26: error: cannot call a method using an invalid expression
+   25 | pub fn (mut app App) controller_get_user() vweb.Result {
+   26 |     // token := app.get_cookie('token') or { '' }
+   27 |     token := app.req.header.get_custom('token') or { '' }
+      |                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   28 | 
+   29 |     if !auth_verify(token) {
+src/user_controllers.v:27:46: error: unexpected `or` block, the function `get_custom` does not return an Option or a Result
+   25 | pub fn (mut app App) controller_get_user() vweb.Result {
+   26 |     // token := app.get_cookie('token') or { '' }
+   27 |     token := app.req.header.get_custom('token') or { '' }
+      |                                                 ~~~~~~~~~
+   28 | 
+   29 |     if !auth_verify(token) {
+src/user_controllers.v:27:8: error: assignment mismatch: 1 variable(s) but `get_custom()` returns 0 value(s)
+   25 | pub fn (mut app App) controller_get_user() vweb.Result {
+   26 |     // token := app.get_cookie('token') or { '' }
+   27 |     token := app.req.header.get_custom('token') or { '' }
+      |           ~~
+   28 | 
+   29 |     if !auth_verify(token) {
+src/user_controllers.v:29:18: error: `token` (no value) used as value in argument 1 to `auth_verify`
+   27 |     token := app.req.header.get_custom('token') or { '' }
+   28 | 
+   29 |     if !auth_verify(token) {
+      |                     ~~~~~
+   30 |         app.set_status(401, '')
+   31 |         return app.text('Not valid token')
+src/user_controllers.v:30:7: error: unknown method or field: `App.set_status`.
+16 possibilities: `before_request`, `controller_auth`, `controller_create_product`, `controller_create_user`, `controller_get_all_products`, `controller_get_all_user`, `controller_get_user`, `index`, `products`, `service_add_product`, `service_add_user`, `service_auth`, `service_get_all_products`, `service_get_all_user`, `service_get_user`, `testboom`.
+   28 | 
+   29 |     if !auth_verify(token) {
+   30 |         app.set_status(401, '')
+      |             ~~~~~~~~~~~~~~~~~~~
+   31 |         return app.text('Not valid token')
+   32 |     }
+src/user_controllers.v:31:14: error: unknown method or field: `App.text`.
+16 possibilities: `before_request`, `controller_auth`, `controller_create_product`, `controller_create_user`, `controller_get_all_products`, `controller_get_all_user`, `controller_get_user`, `index`, `products`, `service_add_product`, `service_add_user`, `service_auth`, `service_get_all_products`, `service_get_all_user`, `service_get_user`, `testboom`.
+   29 |     if !auth_verify(token) {
+   30 |         app.set_status(401, '')
+   31 |         return app.text('Not valid token')
+      |                    ~~~~~~~~~~~~~~~~~~~~~~~
+   32 |     }
+   33 |
+src/user_controllers.v:31:3: error: `app.text('Not valid token')` used as value
+   29 |     if !auth_verify(token) {
+   30 |         app.set_status(401, '')
+   31 |         return app.text('Not valid token')
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   32 |     }
+   33 |
+src/user_controllers.v:34:55: error: cannot call a method using an invalid expression
+   32 |     }
+   33 | 
+   34 |     jwt_payload_stringify := base64.url_decode_str(token.split('.')[1])
+      |                                                          ~~~~~~~~~~
+   35 | 
+   36 |     jwt_payload := json.decode(JwtPayload, jwt_payload_stringify) or {
+src/user_controllers.v:34:65: error: type `void` does not support indexing
+   32 |     }
+   33 | 
+   34 |     jwt_payload_stringify := base64.url_decode_str(token.split('.')[1])
+      |                                                                    ~~~
+   35 | 
+   36 |     jwt_payload := json.decode(JwtPayload, jwt_payload_stringify) or {
+src/user_controllers.v:34:49: error: `token.split('.')[1]` (no value) used as value in argument 1 to `encoding.base64.url_decode_str`
+   32 |     }
+   33 | 
+   34 |     jwt_payload_stringify := base64.url_decode_str(token.split('.')[1])
+      |                                                    ~~~~~~~~~~~~~~~~~~~
+   35 | 
+   36 |     jwt_payload := json.decode(JwtPayload, jwt_payload_stringify) or {
+src/user_controllers.v:37:7: error: unknown method or field: `App.set_status`.
+16 possibilities: `before_request`, `controller_auth`, `controller_create_product`, `controller_create_user`, `controller_get_all_products`, `controller_get_all_user`, `controller_get_user`, `index`, `products`, `service_add_product`, `service_add_user`, `service_auth`, `service_get_all_products`, `service_get_all_user`, `service_get_user`, `testboom`.
+   35 | 
+   36 |     jwt_payload := json.decode(JwtPayload, jwt_payload_stringify) or {
+   37 |         app.set_status(501, '')
+      |             ~~~~~~~~~~~~~~~~~~~
+   38 |         return app.text('jwt decode error')
+   39 |     }
+src/user_controllers.v:38:14: error: unknown method or field: `App.text`.
+16 possibilities: `before_request`, `controller_auth`, `controller_create_product`, `controller_create_user`, `controller_get_all_products`, `controller_get_all_user`, `controller_get_user`, `index`, `products`, `service_add_product`, `service_add_user`, `service_auth`, `service_get_all_products`, `service_get_all_user`, `service_get_user`, `testboom`.
+   36 |     jwt_payload := json.decode(JwtPayload, jwt_payload_stringify) or {
+   37 |         app.set_status(501, '')
+   38 |         return app.text('jwt decode error')
+      |                    ~~~~~~~~~~~~~~~~~~~~~~~~
+   39 |     }
+   40 |
+src/user_controllers.v:38:3: error: `app.text('jwt decode error')` used as value
+   36 |     jwt_payload := json.decode(JwtPayload, jwt_payload_stringify) or {
+   37 |         app.set_status(501, '')
+   38 |         return app.text('jwt decode error')
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   39 |     }
+   40 |
+src/user_controllers.v:44:7: error: unknown method or field: `App.set_status`.
+16 possibilities: `before_request`, `controller_auth`, `controller_create_product`, `controller_create_user`, `controller_get_all_products`, `controller_get_all_user`, `controller_get_user`, `index`, `products`, `service_add_product`, `service_add_user`, `service_auth`, `service_get_all_products`, `service_get_all_user`, `service_get_user`, `testboom`.
+   42 | 
+   43 |     response := app.service_get_user(user_id.int()) or {
+   44 |         app.set_status(400, '')
+      |             ~~~~~~~~~~~~~~~~~~~
+   45 |         return app.text('${err}')
+   46 |     }
+src/user_controllers.v:45:14: error: unknown method or field: `App.text`.
+16 possibilities: `before_request`, `controller_auth`, `controller_create_product`, `controller_create_user`, `controller_get_all_products`, `controller_get_all_user`, `controller_get_user`, `index`, `products`, `service_add_product`, `service_add_user`, `service_auth`, `service_get_all_products`, `service_get_all_user`, `service_get_user`, `testboom`.
+   43 |     response := app.service_get_user(user_id.int()) or {
+   44 |         app.set_status(400, '')
+   45 |         return app.text('${err}')
+      |                    ~~~~~~~~~~~~~~
+   46 |     }
+   47 |     return app.json(response)
+src/user_controllers.v:45:3: error: `app.text('$err')` used as value
+   43 |     response := app.service_get_user(user_id.int()) or {
+   44 |         app.set_status(400, '')
+   45 |         return app.text('${err}')
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~
+   46 |     }
+   47 |     return app.json(response)
+src/user_controllers.v:47:13: error: unknown method or field: `App.json`.
+16 possibilities: `before_request`, `controller_auth`, `controller_create_product`, `controller_create_user`, `controller_get_all_products`, `controller_get_all_user`, `controller_get_user`, `index`, `products`, `service_add_product`, `service_add_user`, `service_auth`, `service_get_all_products`, `service_get_all_user`, `service_get_user`, `testboom`.
+   45 |         return app.text('${err}')
+   46 |     }
+   47 |     return app.json(response)
+      |                ~~~~~~~~~~~~~~
+   48 | }
+   49 |
+src/user_controllers.v:47:2: error: `app.json(response)` used as value
+   45 |         return app.text('${err}')
+   46 |     }
+   47 |     return app.json(response)
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~
+   48 | }
+   49 |
+src/user_controllers.v:53:7: error: unknown method or field: `App.set_status`.
+16 possibilities: `before_request`, `controller_auth`, `controller_create_product`, `controller_create_user`, `controller_get_all_products`, `controller_get_all_user`, `controller_get_user`, `index`, `products`, `service_add_product`, `service_add_user`, `service_auth`, `service_get_all_products`, `service_get_all_user`, `service_get_user`, `testboom`.
+   51 | pub fn (mut app App) controller_create_user(username string, password string) vweb.Result {
+   52 |     if username == '' {
+   53 |         app.set_status(400, '')
+      |             ~~~~~~~~~~~~~~~~~~~
+   54 |         return app.text('username cannot be empty')
+   55 |     }
+src/user_controllers.v:54:14: error: unknown method or field: `App.text`.
+16 possibilities: `before_request`, `controller_auth`, `controller_create_product`, `controller_create_user`, `controller_get_all_products`, `controller_get_all_user`, `controller_get_user`, `index`, `products`, `service_add_product`, `service_add_user`, `service_auth`, `service_get_all_products`, `service_get_all_user`, `service_get_user`, `testboom`.
+   52 |     if username == '' {
+   53 |         app.set_status(400, '')
+   54 |         return app.text('username cannot be empty')
+      |                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   55 |     }
+   56 |     if password == '' {
+src/user_controllers.v:54:3: error: `app.text('username cannot be empty')` used as value
+   52 |     if username == '' {
+   53 |         app.set_status(400, '')
+   54 |         return app.text('username cannot be empty')
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   55 |     }
+   56 |     if password == '' {
+src/user_controllers.v:57:7: error: unknown method or field: `App.set_status`.
+16 possibilities: `before_request`, `controller_auth`, `controller_create_product`, `controller_create_user`, `controller_get_all_products`, `controller_get_all_user`, `controller_get_user`, `index`, `products`, `service_add_product`, `service_add_user`, `service_auth`, `service_get_all_products`, `service_get_all_user`, `service_get_user`, `testboom`.
+   55 |     }
+   56 |     if password == '' {
+   57 |         app.set_status(400, '')
+      |             ~~~~~~~~~~~~~~~~~~~
+   58 |         return app.text('password cannot be empty')
+   59 |     }
+src/user_controllers.v:58:14: error: unknown method or field: `App.text`.
+16 possibilities: `before_request`, `controller_auth`, `controller_create_product`, `controller_create_user`, `controller_get_all_products`, `controller_get_all_user`, `controller_get_user`, `index`, `products`, `service_add_product`, `service_add_user`, `service_auth`, `service_get_all_products`, `service_get_all_user`, `service_get_user`, `testboom`.
+   56 |     if password == '' {
+   57 |         app.set_status(400, '')
+   58 |         return app.text('password cannot be empty')
+      |                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   59 |     }
+   60 |     app.service_add_user(username, password) or {
+src/user_controllers.v:58:3: error: `app.text('password cannot be empty')` used as value
+   56 |     if password == '' {
+   57 |         app.set_status(400, '')
+   58 |         return app.text('password cannot be empty')
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   59 |     }
+   60 |     app.service_add_user(username, password) or {
+src/user_controllers.v:61:7: error: unknown method or field: `App.set_status`.
+16 possibilities: `before_request`, `controller_auth`, `controller_create_product`, `controller_create_user`, `controller_get_all_products`, `controller_get_all_user`, `controller_get_user`, `index`, `products`, `service_add_product`, `service_add_user`, `service_auth`, `service_get_all_products`, `service_get_all_user`, `service_get_user`, `testboom`.
+   59 |     }
+   60 |     app.service_add_user(username, password) or {
+   61 |         app.set_status(400, '')
+      |             ~~~~~~~~~~~~~~~~~~~
+   62 |         return app.text('error: ${err}')
+   63 |     }
+src/user_controllers.v:62:14: error: unknown method or field: `App.text`.
+16 possibilities: `before_request`, `controller_auth`, `controller_create_product`, `controller_create_user`, `controller_get_all_products`, `controller_get_all_user`, `controller_get_user`, `index`, `products`, `service_add_product`, `service_add_user`, `service_auth`, `service_get_all_products`, `service_get_all_user`, `service_get_user`, `testboom`.
+   60 |     app.service_add_user(username, password) or {
+   61 |         app.set_status(400, '')
+   62 |         return app.text('error: ${err}')
+      |                    ~~~~~~~~~~~~~~~~~~~~~
+   63 |     }
+   64 |     app.set_status(201, '')
+src/user_controllers.v:62:3: error: `app.text('error: $err')` used as value
+   60 |     app.service_add_user(username, password) or {
+   61 |         app.set_status(400, '')
+   62 |         return app.text('error: ${err}')
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   63 |     }
+   64 |     app.set_status(201, '')
+src/user_controllers.v:64:6: error: unknown method or field: `App.set_status`.
+16 possibilities: `before_request`, `controller_auth`, `controller_create_product`, `controller_create_user`, `controller_get_all_products`, `controller_get_all_user`, `controller_get_user`, `index`, `products`, `service_add_product`, `service_add_user`, `service_auth`, `service_get_all_products`, `service_get_all_user`, `service_get_user`, `testboom`.
+   62 |         return app.text('error: ${err}')
+   63 |     }
+   64 |     app.set_status(201, '')
+      |         ~~~~~~~~~~~~~~~~~~~
+   65 |     return app.text('User created successfully')
+   66 | }
+src/user_controllers.v:65:13: error: unknown method or field: `App.text`.
+16 possibilities: `before_request`, `controller_auth`, `controller_create_product`, `controller_create_user`, `controller_get_all_products`, `controller_get_all_user`, `controller_get_user`, `index`, `products`, `service_add_product`, `service_add_user`, `service_auth`, `service_get_all_products`, `service_get_all_user`, `service_get_user`, `testboom`.
+   63 |     }
+   64 |     app.set_status(201, '')
+   65 |     return app.text('User created successfully')
+      |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   66 | }
+src/user_controllers.v:65:2: error: `app.text('User created successfully')` used as value
+   63 |     }
+   64 |     app.set_status(201, '')
+   65 |     return app.text('User created successfully')
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   66 | }

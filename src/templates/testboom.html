@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='UTF-8' name='viewport' content='width=device-width, initial-scale=1.0'>
+		<!-- Compiled and minified CSS -->
+		<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css'>
+		<!-- Compiled and minified JavaScript -->
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js'></script>
+		<!-- Material UI icons -->
+		<link href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet'>
+		<script type="module">
+			import {createApp} from 'https://cdnjs.cloudflare.com/ajax/libs/petite-vue/0.4.1/petite-vue.es.min.js'
+
+			function add() {
+				this.count ++
+			}
+
+			function substract() {
+				this.count --
+			}
+
+			createApp({
+				message: 'This is petite-vue',
+				count: 1,
+				add,
+				substract
+			}).mount()
+
+		</script>
+		<title>$title</title>
+	</head>
+	<body>
+		<div class="container">
+			<div class="section">
+				<div class="row">
+					<div class="col s12 blue">s12 blue</div><br>
+					<div class="col s12 m8 orange">s12 m8 orange</div><br>
+					<div class="col s12 m8 l4 red">s12 m8 l4 red</div><br>
+					<div class="col s12 m8 l4 xl2 yellow">s12 m8 l4 xl2 yellow</div><br>
+				</div>
+			</div>
+			<div class="divider"></div>
+			<div class="section">
+				<div class="row">
+					<div v-for="i in 3" class="col s1 m4 orange">
+						{{ i }}
+					</div>
+				</div>
+			</div>
+			<div class="divider"></div>
+			<div class="section">
+				<div class="row">
+					<div class="col offset-s7 s5 card-panel yellow">
+						<h3 class="blue-text center-align">{{ message }}</h3>
+					</div>
+				</div>
+			</div>
+			<div class="divider"></div>
+			<div class="section">
+				<div class="row">
+					<span class="col s3 red white-text center-align"><h2>{{ count }}</h2></span>
+					<button class="btn offset-s1 col s1" v-on:click="add()">Add</button>
+					<button class="btn offset-s1 col s1" v-on:click="substract()">Sub</button>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

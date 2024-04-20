@@ -1,0 +1,49 @@
+================ V panic ================
+   module: builtin
+ function: get()
+  message: array.get: index out of range (i == 1, a.len == 1)
+     file: /home/teddys/v/vlib/builtin/array.v:445
+   v hash: 6d20ec7
+=========================================
+================ V panic ================
+   module: builtin
+ function: get()
+  message: array.get: index out of range (i == 1, a.len == 1)
+     file: /home/teddys/v/vlib/builtin/array.v:445
+   v hash: 6d20ec7
+=========================================
+/tmp/v_1000/../../../../../../home/teddys/v/vlib/builtin/builtin.c.v:83: at panic_debug: Backtrace
+/tmp/v_1000/../../../../../../home/teddys/v/vlib/builtin/builtin.c.v:83: at panic_debug: Backtrace
+/tmp/v_1000/../../../../../../home/teddys/v/vlib/builtin/array.v:445: /tmp/v_1000/../../../../../../home/teddys/v/vlib/builtin/array.v:445: by array_get
+by array_get
+/tmp/v_1000/../../../../../../home/teddys/v/vlib/v/gen/c/comptime.v:100: by v__gen__c__Gen_comptime_call
+/tmp/v_1000/../../../../../../home/teddys/v/vlib/v/gen/c/comptime.v:100: by v__gen__c__Gen_comptime_call
+/tmp/v_1000/../../../../../../home/teddys/v/vlib/v/gen/c/cgen.v:3351: by v__gen__c__Gen_expr
+/tmp/v_1000/../../../../../../home/teddys/v/vlib/v/gen/c/cgen.v:3351: by v__gen__c__Gen_expr
+/tmp/v_1000/../../../../../../home/teddys/v/vlib/v/gen/c/cgen.v:5258: by v__gen__c__Gen_return_stmt
+/tmp/v_1000/../../../../../../home/teddys/v/vlib/v/gen/c/cgen.v:5258: by v__gen__c__Gen_return_stmt
+/tmp/v_1000/../../../../../../home/teddys/v/vlib/v/gen/c/cgen.v:2238: by v__gen__c__Gen_stmt
+/tmp/v_1000/../../../../../../home/teddys/v/vlib/v/gen/c/cgen.v:2238: by v__gen__c__Gen_stmt
+/tmp/v_1000/../../../../../../home/teddys/v/vlib/v/gen/c/cgen.v:1915: by v__gen__c__Gen_stmts_with_tmp_var
+/tmp/v_1000/../../../../../../home/teddys/v/vlib/v/gen/c/cgen.v:1915: by v__gen__c__Gen_stmts_with_tmp_var
+/tmp/v_1000/../../../../../../home/teddys/v/vlib/v/gen/c/cgen.v:1802: by v__gen__c__Gen_stmts
+/tmp/v_1000/../../../../../../home/teddys/v/vlib/v/gen/c/cgen.v:1802: by v__gen__c__Gen_stmts
+/tmp/v_1000/../../../../../../home/teddys/v/vlib/v/gen/c/fn.v:479: by v__gen__c__Gen_gen_fn_decl
+/tmp/v_1000/../../../../../../home/teddys/v/vlib/v/gen/c/fn.v:479: by v__gen__c__Gen_gen_fn_decl
+/tmp/v_1000/../../../../../../home/teddys/v/vlib/v/gen/c/fn.v:111: by v__gen__c__Gen_fn_decl
+/tmp/v_1000/../../../../../../home/teddys/v/vlib/v/gen/c/fn.v:111: by v__gen__c__Gen_fn_decl
+/tmp/v_1000/../../../../../../home/teddys/v/vlib/v/gen/c/cgen.v:2152: by v__gen__c__Gen_stmt
+/tmp/v_1000/../../../../../../home/teddys/v/vlib/v/gen/c/cgen.v:2152: by v__gen__c__Gen_stmt
+/tmp/v_1000/../../../../../../home/teddys/v/vlib/v/gen/c/cgen.v:1915: by v__gen__c__Gen_stmts_with_tmp_var
+/tmp/v_1000/../../../../../../home/teddys/v/vlib/v/gen/c/cgen.v:1915: by v__gen__c__Gen_stmts_with_tmp_var
+/tmp/v_1000/../../../../../../home/teddys/v/vlib/v/gen/c/cgen.v:1802: by v__gen__c__Gen_stmts
+/tmp/v_1000/../../../../../../home/teddys/v/vlib/v/gen/c/cgen.v:1802: by v__gen__c__Gen_stmts
+/tmp/v_1000/../../../../../../home/teddys/v/vlib/v/gen/c/cgen.v:754: by v__gen__c__Gen_gen_file
+/tmp/v_1000/../../../../../../home/teddys/v/vlib/v/gen/c/cgen.v:754: by v__gen__c__Gen_gen_file
+/tmp/v_1000/../../../../../../home/teddys/v/vlib/v/gen/c/cgen.v:704: by v__gen__c__cgen_process_one_file_cb
+/tmp/v_1000/../../../../../../home/teddys/v/vlib/v/gen/c/cgen.v:704: by v__gen__c__cgen_process_one_file_cb
+/tmp/v_1000/../../../../../../home/teddys/v/vlib/sync/pool/pool.c.v:118: by sync__pool__process_in_thread
+/tmp/v_1000/v2.01HVWY68J0F2F439Z2K1RWN7HB.tmp.c:11561: by sync__pool__process_in_thread_thread_wrapper
+/tmp/v_1000/../../../../../../home/teddys/v/vlib/sync/pool/pool.c.v:118: by sync__pool__process_in_thread
+/tmp/v_1000/v2.01HVWY68J0F2F439Z2K1RWN7HB.tmp.c:11561: by sync__pool__process_in_thread_thread_wrapper
+7f314fabb134 : by ???

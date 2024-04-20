@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--Let browser know website is optimized for mobile-->
+	<meta charset='UTF-8' name='viewport' content='width=device-width, initial-scale=1.0'>
+	<!-- Compiled and minified CSS -->
+	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css'>
+	<!-- Compiled and minified JavaScript -->
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js'></script>
+	<!-- Material UI icons -->
+	<link href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet'>
+	@js 'src/js/cookie.js'
+	<title>${title}</title>
+</head>
+<body>
+	<div>@include 'templates/header_component.html'</div>
+	<div class="container">
+		<div  class='card-panel center-align' style='padding: 10px; margin: 10px; border-radius: 5px;'>
+			<form id='index_form' method='post' action=''>
+				<div style='display:flex; flex-direction: column;'>
+					<input type='text' v-model='userName' placeholder='Username' required autofocus>
+					<input type='password' v-model='password' placeholder='Password' required>
+				</div>
+				<div style='margin-top: 10px;'>
+					<input class='waves-effect waves-light btn-small' type='submit' v-on:click='login()' formaction='javascript:void(0);' value='Login'>
+					<input class='waves-effect waves-light btn-small' type='submit' v-on:click='addUser()' formaction='javascript:void(0);' value='Register'>
+				</div>
+			</form>
+		</div>
+	</div>
+	<script type='module'>
+		// function eraseCookie(name) {
+		//     document.cookie = name + '=; Max-Age=0'
+		// }
+		import {createApp} from 'https://cdnjs.cloudflare.com/ajax/libs/petite-vue/0.4.1/petite-vue.es.min.js'
+
+		function resetFields() {
+			this.userName = ''
+			this.password = ''
+		}
+
+		async function addUser() {
+			const formData = new FormData();
+			formData.append('username', this.userName)
+			formData.append('password', this.password)
+			await fetch('/controller/user/create', {
+				method: 'POST',
+				body: formData
+			})
+				.then( async (response) => {
+					if (response.status != 201) {
+						throw await response.text()
+					}
+					return await response.text()
+				})
+				.then((data) => {
+					this.resetFields()
+					alert('User created successfully')
+				})
+				.catch((error) => {
+					this.resetFields()
+					alert(error);
+				});
+		}
+
+		async function login() {
+			const formData = new FormData()
+			formData.append('username', this.userName)
+			formData.append('password', this.password)
+			await fetch('/controller/auth', {
+				method: 'POST',
+				body: formData
+			})
+				.then( async (response) => {
+					if (response.status != 200) {
+						throw await response.text()
+					}
+					return response.json()
+				})
+				.then((data) => {
+					document.cookie = 'token='+data+';';
+					window.location.href = '/products'
+				})
+				.catch((error) => {
+					this.resetFields()
+					alert(error);
+				});
+		}
+
+		createApp({
+			userName: '',
+			password: '',
+			resetFields,
+			addUser,
+			login,
+			checkToken
+		}).mount()
+
+	</script>
+</body>
+</html>
