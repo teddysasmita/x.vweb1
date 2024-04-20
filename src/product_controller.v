@@ -5,7 +5,7 @@ import encoding.base64
 import json
 
 @['/controller/products'; get]
-pub fn (mut app App) controller_get_all_products(mut ctx Context) vweb.Result {
+pub fn (app App) controller_get_all_products(mut ctx Context) vweb.Result {
 	token := ctx.req.header.get_custom('token') or { '' }
 
 	if !auth_verify(token) {
@@ -31,7 +31,7 @@ pub fn (mut app App) controller_get_all_products(mut ctx Context) vweb.Result {
 }
 
 @['/controller/product/create'; post]
-pub fn (mut app App) controller_create_product(mut ctx Context, product_name string) vweb.Result {
+pub fn (app App) controller_create_product(mut ctx Context, product_name string) vweb.Result {
 	if product_name == '' {
 		ctx.res.set_status(.bad_request)
 		return ctx.text('product name cannot be empty')

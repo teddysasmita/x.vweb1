@@ -3,7 +3,7 @@ module main
 import crypto.bcrypt
 import databases
 
-fn (mut app App) service_add_user(username string, password string) ! {
+fn (app App) service_add_user(username string, password string) ! {
 	mut db := databases.create_db_connection()!
 
 	defer {
@@ -30,7 +30,7 @@ fn (mut app App) service_add_user(username string, password string) ! {
 	}
 }
 
-fn (mut app App) service_get_all_user() ![]User {
+fn (app App) service_get_all_user() ![]User {
 	mut db := databases.create_db_connection() or {
 		println(err)
 		return err
@@ -47,7 +47,7 @@ fn (mut app App) service_get_all_user() ![]User {
 	return results
 }
 
-fn (mut app App) service_get_user(id int) !User {
+fn (app App) service_get_user(id int) !User {
 	mut db := databases.create_db_connection() or {
 		println(err)
 		return err

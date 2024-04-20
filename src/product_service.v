@@ -2,7 +2,7 @@ module main
 
 import databases
 
-fn (mut app App) service_add_product(product_name string, user_id int) ! {
+fn (app App) service_add_product(product_name string, user_id int) ! {
 	mut db := databases.create_db_connection()!
 
 	defer {
@@ -24,7 +24,7 @@ fn (mut app App) service_add_product(product_name string, user_id int) ! {
 	}
 }
 
-fn (mut app App) service_get_all_products() ![]Product {
+fn (app App) service_get_all_products() ![]Product {
 	mut db := databases.create_db_connection() or {
 		println(err)
 		return err

@@ -5,7 +5,7 @@ import encoding.base64
 import json
 
 @['/controller/users'; get]
-pub fn (mut app App) controller_get_all_user(mut ctx Context) vweb.Result {
+pub fn (app App) controller_get_all_user(mut ctx Context) vweb.Result {
 	// token := app.get_cookie('token') or { '' }
 	token := ctx.req.header.get_custom('token') or { '' }
 
@@ -22,7 +22,7 @@ pub fn (mut app App) controller_get_all_user(mut ctx Context) vweb.Result {
 }
 
 @['/controller/user'; get]
-pub fn (mut app App) controller_get_user(mut ctx Context) vweb.Result {
+pub fn (app App) controller_get_user(mut ctx Context) vweb.Result {
 	// token := app.get_cookie('token') or { '' }
 	token := ctx.req.header.get_custom('token') or { '' }
 
@@ -48,7 +48,7 @@ pub fn (mut app App) controller_get_user(mut ctx Context) vweb.Result {
 }
 
 @['/controller/user/create'; post]
-pub fn (mut app App) controller_create_user(mut ctx Context, username string, password string) vweb.Result {
+pub fn (app App) controller_create_user(mut ctx Context, username string, password string) vweb.Result {
 	if username == '' {
 		ctx.res.set_status(.bad_request)
 		return ctx.text('username cannot be empty')

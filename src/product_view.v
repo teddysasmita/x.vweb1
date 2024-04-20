@@ -3,7 +3,7 @@ module main
 import x.vweb
 
 @['/products'; get]
-pub fn (mut app App) products(mut ctx Context) vweb.Result {
+pub fn (app App) products(mut ctx Context) vweb.Result {
 	token := ctx.get_cookie('token') or {
 		ctx.res.set_status(.bad_request)
 		return ctx.text('${err}')

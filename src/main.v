@@ -48,7 +48,7 @@ fn main() {
 	vweb.run[App, Context](mut app, port)
 }
 
-pub fn (mut app App) index() vweb.Result {
+pub fn (app App) index() vweb.Result {
 	title := 'VWEB App'
 
 	return $vweb.html()
