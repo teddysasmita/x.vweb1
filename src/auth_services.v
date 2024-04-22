@@ -24,7 +24,7 @@ struct JwtPayload {
 	permissions string
 }
 
-fn (app App) service_auth(username string, password string) !string {
+pub fn (app &App) service_auth(username string, password string) !string {
 	mut db := databases.create_db_connection() or {
 		eprintln(err)
 		panic(err)
@@ -54,7 +54,7 @@ fn (app App) service_auth(username string, password string) !string {
 	return token
 }
 
-fn make_token(user User) string {
+pub fn make_token(user User) string {
 	secret := 'SECRET_KEY' // os.getenv('SECRET_KEY')
 
 	jwt_header := JwtHeader{'HS256', 'JWT'}
@@ -74,7 +74,7 @@ fn make_token(user User) string {
 	return jwt
 }
 
-fn auth_verify(token string) bool {
+pub fn auth_verify(token string) bool {
 	if token == '' {
 		return false
 	}

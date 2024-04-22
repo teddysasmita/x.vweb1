@@ -10,23 +10,15 @@ const (
 
 pub struct Context {
     vweb.Context
-pub mut:
-    // In the context struct we store data that could be different
-    // for each request. Like a User struct or a session id
-    user       User
-    session_id string
+
 }
 
 pub struct App {
 	vweb.StaticHandler
-pub:
-    // In the app struct we store data that should be accessible by all endpoints.
-    // For example, a database or configuration values.
-    secret_key string
 }
 
 
-pub fn (app App) before_request(mut ctx Context) {
+pub fn (app &App) before_request(mut ctx Context) {
 	println('[web] before_request: ${ctx.req.method} ${ctx.req.url}')
 }
 
@@ -48,7 +40,7 @@ fn main() {
 	vweb.run[App, Context](mut app, port)
 }
 
-pub fn (app App) index() vweb.Result {
+pub fn (app &App) index() vweb.Result {
 	title := 'VWEB App'
 
 	return $vweb.html()
