@@ -33,7 +33,7 @@ fn main() {
 	db.close() or { panic(err) }
 
 	mut app := &App{}
-	app.serve_static('/favicon.ico', 'src/assets/favicon.ico')!
+	//app.serve_static('/favicon.ico', 'src/assets/favicon.ico')!
 	// makes all static files available.
 	app.mount_static_folder_at(os.resource_abs_path('.'), '/')!
 
