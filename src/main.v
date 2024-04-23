@@ -2,7 +2,7 @@ module main
 
 import x.vweb
 import databases
-import os
+//import os
 
 const (
 	port = 8082
@@ -35,7 +35,8 @@ fn main() {
 	mut app := &App{}
 	//app.serve_static('/favicon.ico', 'src/assets/favicon.ico')!
 	// makes all static files available.
-	app.mount_static_folder_at(os.resource_abs_path('.'), '/')!
+	// app.mount_static_folder_at(os.resource_abs_path('.'), '/')!
+	app.handle_static('assets', false)!
 
 	vweb.run[App, Context](mut app, port)
 }
