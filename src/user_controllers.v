@@ -7,7 +7,7 @@ import json
 @['/controller/users'; get]
 pub fn (app &App) controller_get_all_user(mut ctx Context) vweb.Result {
 	// token := app.get_cookie('token') or { '' }
-	token := ctx.req.header.get_custom('token') or { '' }
+	token := ctx.get_custom_header('token') or { '' }
 
 	if !auth_verify(token) {
 		ctx.res.set_status(.bad_request)
@@ -24,7 +24,7 @@ pub fn (app &App) controller_get_all_user(mut ctx Context) vweb.Result {
 @['/controller/user'; get]
 pub fn (app &App) controller_get_user(mut ctx Context) vweb.Result {
 	// token := app.get_cookie('token') or { '' }
-	token := ctx.req.header.get_custom('token') or { '' }
+	token := ctx.get_custom_header('token') or { '' }
 
 	if !auth_verify(token) {
 		ctx.res.set_status(.bad_request)

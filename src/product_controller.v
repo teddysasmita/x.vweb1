@@ -6,7 +6,7 @@ import json
 
 @['/controller/products'; get]
 pub fn (app &App) controller_get_all_products(mut ctx Context) vweb.Result {
-	token := ctx.req.header.get_custom('token') or { '' }
+	token := ctx.get_custom_header('token') or { '' }
 
 	if !auth_verify(token) {
 		ctx.res.set_status(.bad_request)
@@ -37,7 +37,7 @@ pub fn (app &App) controller_create_product(mut ctx Context, product_name string
 		return ctx.text('product name cannot be empty')
 	}
 
-	token := ctx.req.header.get_custom('token') or { '' }
+	token := ctx.get_custom_header('token') or { '' }
 
 	if !auth_verify(token) {
 		ctx.res.set_status(.bad_request)
